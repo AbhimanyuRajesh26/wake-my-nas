@@ -2,7 +2,7 @@ class WakeMyNas < Formula
   desc "Automatic Wake-on-LAN for macOS - wake your NAS when your Mac wakes"
   homepage "https://github.com/dgeske/wake-my-nas"
   url "https://github.com/dgeske/wake-my-nas/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "e1ecca20cbf6a09f82831edd37f10f9efcdbc7150ca79e2ff597b36ed6068cf3"
+  sha256 "1173436a31db38bf1877ce0e3d75834977033dd15b9032aecc070102a50e83a5"
   license "Unlicense"
 
   depends_on "wakeonlan"
