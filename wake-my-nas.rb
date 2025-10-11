@@ -64,6 +64,6 @@ class WakeMyNas < Formula
   end
 
   test do
-    system "#{bin}/wake-my-nas", "--version"
+    system bin/"wake-my-nas", "--version"
   end
 end
