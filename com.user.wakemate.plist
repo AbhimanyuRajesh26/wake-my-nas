@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- ================================================================ -->
+    <!-- wakemate LaunchAgent - Automatic Wake-on-LAN for macOS          -->
+    <!-- ================================================================ -->
+    <!-- Installation: Copy to ~/Library/LaunchAgents/ and load with:     -->
+    <!-- launchctl load ~/Library/LaunchAgents/com.user.wakemate.plist    -->
+    <!-- ================================================================ -->
+
+    <key>Label</key>
+    <string>com.user.wakemate</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>INSTALL_PATH</string>
+    </array>
+
+    <key>StartOnMount</key>
+    <false/>
+    <key>RunAtLoad</key>
+    <false/>
+    <key>StartInterval</key>
+    <integer>0</integer>
+    
+    <key>WatchPaths</key>
+    <array>
+        <string>/private/var/run/systemkeychaincheck.done</string>
+    </array>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/wakemate-stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/wakemate-stderr.log</string>
+
+    <key>KeepAlive</key>
+    <false/>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+
+</dict>
+</plist>

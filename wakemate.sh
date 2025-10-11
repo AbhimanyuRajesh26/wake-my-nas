@@ -1,0 +1,134 @@
+#!/bin/bash
+
+# ============================================================================
+# wakemate - Automatic Wake-on-LAN for macOS
+# ============================================================================
+# Automatically sends WoL magic packets when your Mac wakes up.
+# Works with any WoL-enabled device: NAS, servers, desktops, etc.
+# ============================================================================
+
+VERSION="1.0.0"
+CONFIG_FILE="$HOME/.config/wakemate/config"
+
+# -------------------- CONFIGURATION --------------------
+
+load_config() {
+    if [ -f "$CONFIG_FILE" ]; then
+        source "$CONFIG_FILE"
+    else
+        TARGET_MAC="00:11:22:33:44:55"
+        TARGET_IP="192.168.1.100"
+        EXPECTED_SSID="YourHomeNetwork"
+        EXPECTED_SUBNET="192.168.1"
+    fi
+    LOG_FILE="$HOME/Library/Logs/wakemate.log"
+}
+
+create_default_config() {
+    mkdir -p "$(dirname "$CONFIG_FILE")"
+    cat > "$CONFIG_FILE" << 'EOF'
+# wakemate configuration
+TARGET_MAC="00:11:22:33:44:55"
+TARGET_IP="192.168.1.100"
+EXPECTED_SSID="YourHomeNetwork"
+EXPECTED_SUBNET="192.168.1"
+EOF
+    echo "Created config file: $CONFIG_FILE"
+    echo "Edit it with your device settings."
+}
+
+# -------------------- FUNCTIONS --------------------
+
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+check_wakeonlan() {
+    if ! command -v wakeonlan &> /dev/null; then
+        log "⚠️  wakeonlan not found. Install with: brew install wakeonlan"
+        exit 1
+    fi
+}
+
+get_current_ssid() {
+    /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print $2}'
+}
+
+check_network() {
+    if [ -n "$EXPECTED_SSID" ]; then
+        CURRENT_SSID=$(get_current_ssid)
+        if [ "$CURRENT_SSID" != "$EXPECTED_SSID" ]; then
+            log "❌ Not on expected network. Current: $CURRENT_SSID, Expected: $EXPECTED_SSID"
+            exit 0
+        fi
+        log "✓ Connected to $CURRENT_SSID"
+    fi
+
+    if [ -n "$EXPECTED_SUBNET" ]; then
+        CURRENT_IP=$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null)
+        if [[ ! "$CURRENT_IP" =~ ^$EXPECTED_SUBNET\. ]]; then
+            log "❌ Not on expected subnet. Current IP: $CURRENT_IP"
+            exit 0
+        fi
+        log "✓ On expected subnet: $CURRENT_IP"
+    fi
+}
+
+check_device_awake() {
+    if ping -c 1 -W 2 "$TARGET_IP" &> /dev/null; then
+        log "✓ Device already awake at $TARGET_IP"
+        exit 0
+    fi
+}
+
+send_wol() {
+    log "📡 Sending Wake-on-LAN packet to $TARGET_MAC..."
+    wakeonlan "$TARGET_MAC" >> "$LOG_FILE" 2>&1
+    log "✓ Magic packet sent"
+}
+
+# -------------------- MAIN --------------------
+
+# Handle CLI arguments
+case "${1:-}" in
+    --version|-v)
+        echo "wakemate v$VERSION"
+        exit 0
+        ;;
+    --edit|-e)
+        if [ ! -f "$CONFIG_FILE" ]; then
+            create_default_config
+        fi
+        ${EDITOR:-nano} "$CONFIG_FILE"
+        exit 0
+        ;;
+    --init)
+        create_default_config
+        exit 0
+        ;;
+    --help|-h)
+        echo "wakemate v$VERSION - Automatic Wake-on-LAN for macOS"
+        echo ""
+        echo "Usage: wakemate [OPTIONS]"
+        echo ""
+        echo "Options:"
+        echo "  --init          Create default config file"
+        echo "  --edit, -e      Edit config file"
+        echo "  --version, -v   Show version"
+        echo "  --help, -h      Show this help"
+        echo ""
+        echo "Config: $CONFIG_FILE"
+        echo "Logs:   $HOME/Library/Logs/wakemate.log"
+        exit 0
+        ;;
+esac
+
+load_config
+log "========== wakemate v$VERSION started =========="
+
+check_wakeonlan
+check_network
+check_device_awake
+send_wol
+
+log "========== wakemate complete =========="
