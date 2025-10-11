@@ -9,7 +9,19 @@ class WakeMyNas < Formula
 
   def install
     bin.install "wake-my-nas.sh" => "wake-my-nas"
-    prefix.install "com.github.wake-my-nas.plist"
+  end
+
+  def post_install
+    system bin/"wake-my-nas", "--init"
+  end
+
+  service do
+    run opt_bin/"wake-my-nas"
+    keep_alive false
+    process_type :background
+    watch_paths ["/private/var/run/systemkeychaincheck.done"]
+    log_path var/"log/wake-my-nas.log"
+    error_log_path var/"log/wake-my-nas-error.log"
   end
 
   def caveats
@@ -17,23 +29,14 @@ class WakeMyNas < Formula
       📡 wake-my-nas installed!
 
       1. Configure your device:
-         wake-my-nas --init
          wake-my-nas --edit
 
-      2. Install LaunchAgent (auto-wake on Mac wake):
-         cp #{prefix}/com.github.wake-my-nas.plist ~/Library/LaunchAgents/
-         sed -i '' "s|INSTALL_PATH|#{bin}/wake-my-nas|g" ~/Library/LaunchAgents/com.github.wake-my-nas.plist
-         launchctl load ~/Library/LaunchAgents/com.github.wake-my-nas.plist
+      2. Start automatic wake:
+         brew services start wake-my-nas
 
-      3. Test manually:
-         wake-my-nas
+      That's it! Your device will wake when your Mac wakes.
 
-      4. View logs:
-         tail -f ~/Library/Logs/wake-my-nas.log
-
-      To uninstall LaunchAgent:
-         launchctl unload ~/Library/LaunchAgents/com.github.wake-my-nas.plist
-         rm ~/Library/LaunchAgents/com.github.wake-my-nas.plist
+      View logs: tail -f #{var}/log/wake-my-nas.log
     EOS
   end
 
