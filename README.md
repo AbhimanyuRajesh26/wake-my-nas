@@ -1,4 +1,4 @@
-# 🤝 wakemate
+# 📡 wake-my-nas
 
 **Automatic Wake-on-LAN for macOS**
 
@@ -11,16 +11,16 @@ Wake your NAS, server, desktop, or any WoL-enabled device automatically when you
 ### Via Homebrew
 
 ```bash
-brew install wakemate
+brew install wake-my-nas
 ```
 
 ### Manual
 
 ```bash
-git clone https://github.com/dgeske/wakemate.git
-cd wakemate
-chmod +x wakemate.sh
-./wakemate.sh --init
+git clone https://github.com/dgeske/wake-my-nas.git
+cd wake-my-nas
+chmod +x wake-my-nas.sh
+./wake-my-nas.sh --init
 ```
 
 ---
@@ -30,8 +30,8 @@ chmod +x wakemate.sh
 ### 1. Configure your device
 
 ```bash
-wakemate --init    # Create config
-wakemate --edit    # Edit settings
+wake-my-nas --init    # Create config
+wake-my-nas --edit    # Edit settings
 ```
 
 Set these values:
@@ -57,9 +57,9 @@ arp -a | grep YOUR_DEVICE_IP
 ### 3. Install LaunchAgent (auto-wake on Mac wake)
 
 ```bash
-cp $(brew --prefix)/opt/wakemate/com.github.wakemate.plist ~/Library/LaunchAgents/
-sed -i '' "s|INSTALL_PATH|$(which wakemate)|g" ~/Library/LaunchAgents/com.github.wakemate.plist
-launchctl load ~/Library/LaunchAgents/com.github.wakemate.plist
+cp $(brew --prefix)/opt/wake-my-nas/com.github.wake-my-nas.plist ~/Library/LaunchAgents/
+sed -i '' "s|INSTALL_PATH|$(which wake-my-nas)|g" ~/Library/LaunchAgents/com.github.wake-my-nas.plist
+launchctl load ~/Library/LaunchAgents/com.github.wake-my-nas.plist
 ```
 
 ---
@@ -67,15 +67,15 @@ launchctl load ~/Library/LaunchAgents/com.github.wakemate.plist
 ## 🎯 Usage
 
 ```bash
-wakemate              # Send WoL packet now
-wakemate --edit       # Edit config
-wakemate --version    # Show version
-wakemate --help       # Show help
+wake-my-nas              # Send WoL packet now
+wake-my-nas --edit       # Edit config
+wake-my-nas --version    # Show version
+wake-my-nas --help       # Show help
 ```
 
 **View logs:**
 ```bash
-tail -f ~/Library/Logs/wakemate.log
+tail -f ~/Library/Logs/wake-my-nas.log
 ```
 
 ---
@@ -83,9 +83,9 @@ tail -f ~/Library/Logs/wakemate.log
 ## 🗑️ Uninstall
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.github.wakemate.plist
-rm ~/Library/LaunchAgents/com.github.wakemate.plist
-brew uninstall wakemate
+launchctl unload ~/Library/LaunchAgents/com.github.wake-my-nas.plist
+rm ~/Library/LaunchAgents/com.github.wake-my-nas.plist
+brew uninstall wake-my-nas
 ```
 
 ---
@@ -93,7 +93,7 @@ brew uninstall wakemate
 ## 💡 How It Works
 
 1. **Mac wakes** (lid open, power button, etc.)
-2. **wakemate checks** if you're on the expected network
+2. **wake-my-nas checks** if you're on the expected network
 3. **Pings device** to see if it's already awake
 4. **Sends WoL packet** only if needed
 5. **Logs everything** for debugging

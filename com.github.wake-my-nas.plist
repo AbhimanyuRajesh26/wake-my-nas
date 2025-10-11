@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <!-- ================================================================ -->
-    <!-- wakemate LaunchAgent - Automatic Wake-on-LAN for macOS          -->
+    <!-- wake-my-nas LaunchAgent - Automatic Wake-on-LAN for macOS       -->
     <!-- ================================================================ -->
 
     <key>Label</key>
-    <string>com.github.wakemate</string>
+    <string>com.github.wake-my-nas</string>
 
     <key>ProgramArguments</key>
     <array>
@@ -27,9 +27,9 @@
     </array>
 
     <key>StandardOutPath</key>
-    <string>/tmp/wakemate-stdout.log</string>
+    <string>/tmp/wake-my-nas-stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>/tmp/wakemate-stderr.log</string>
+    <string>/tmp/wake-my-nas-stderr.log</string>
 
     <key>KeepAlive</key>
     <false/>

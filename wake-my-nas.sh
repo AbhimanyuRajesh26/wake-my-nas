@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # ============================================================================
-# wakemate - Automatic Wake-on-LAN for macOS
+# wake-my-nas - Automatic Wake-on-LAN for macOS
 # ============================================================================
 # Automatically sends WoL magic packets when your Mac wakes up.
 # Works with any WoL-enabled device: NAS, servers, desktops, etc.
 # ============================================================================
 
 VERSION="1.0.0"
-CONFIG_FILE="$HOME/.config/wakemate/config"
+CONFIG_FILE="$HOME/.config/wake-my-nas/config"
 
 # -------------------- CONFIGURATION --------------------
 
@@ -21,13 +21,13 @@ load_config() {
         EXPECTED_SSID="YourHomeNetwork"
         EXPECTED_SUBNET="192.168.1"
     fi
-    LOG_FILE="$HOME/Library/Logs/wakemate.log"
+    LOG_FILE="$HOME/Library/Logs/wake-my-nas.log"
 }
 
 create_default_config() {
     mkdir -p "$(dirname "$CONFIG_FILE")"
     cat > "$CONFIG_FILE" << 'EOF'
-# wakemate configuration
+# wake-my-nas configuration
 TARGET_MAC="00:11:22:33:44:55"
 TARGET_IP="192.168.1.100"
 EXPECTED_SSID="YourHomeNetwork"
@@ -92,7 +92,7 @@ send_wol() {
 # Handle CLI arguments
 case "${1:-}" in
     --version|-v)
-        echo "wakemate v$VERSION"
+        echo "wake-my-nas v$VERSION"
         exit 0
         ;;
     --edit|-e)
@@ -107,9 +107,9 @@ case "${1:-}" in
         exit 0
         ;;
     --help|-h)
-        echo "wakemate v$VERSION - Automatic Wake-on-LAN for macOS"
+        echo "wake-my-nas v$VERSION - Automatic Wake-on-LAN for macOS"
         echo ""
-        echo "Usage: wakemate [OPTIONS]"
+        echo "Usage: wake-my-nas [OPTIONS]"
         echo ""
         echo "Options:"
         echo "  --init          Create default config file"
@@ -118,17 +118,17 @@ case "${1:-}" in
         echo "  --help, -h      Show this help"
         echo ""
         echo "Config: $CONFIG_FILE"
-        echo "Logs:   $HOME/Library/Logs/wakemate.log"
+        echo "Logs:   $HOME/Library/Logs/wake-my-nas.log"
         exit 0
         ;;
 esac
 
 load_config
-log "========== wakemate v$VERSION started =========="
+log "========== wake-my-nas v$VERSION started =========="
 
 check_wakeonlan
 check_network
 check_device_awake
 send_wol
 
-log "========== wakemate complete =========="
+log "========== wake-my-nas complete =========="
