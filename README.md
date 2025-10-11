@@ -2,24 +2,19 @@
 
 **Automatic Wake-on-LAN for macOS**
 
-Wake your NAS, server, or any device when you open your MacBook. Zero configuration hassle.
+Wake your NAS, server, or any device when you open your MacBook.
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-# Install
 brew install wake-my-nas
-
-# Configure (set your device's MAC address and IP)
-wake-my-nas --edit
-
-# Start
-brew services start wake-my-nas
+wake-my-nas --edit                    # Set MAC and IP
+wake-my-nas-install-service           # Done!
 ```
 
-**Done!** Your device now wakes automatically when your Mac wakes.
+Your device now wakes automatically when your Mac wakes.
 
 ---
 
