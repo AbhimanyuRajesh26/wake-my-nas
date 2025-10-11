@@ -26,6 +26,8 @@ Your device now wakes automatically when your Mac wakes.
 
 ## Configuration
 
+**Security Note:** macOS will show wake-my-nas as "item from unidentified developer" in Login Items (System Settings). This is normal for open-source scripts that aren't code-signed. The script is open source - you can review the code at any time.
+
 **Find your device on the network:**
 ```bash
 wake-my-nas --discover
