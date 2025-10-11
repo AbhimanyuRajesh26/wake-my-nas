@@ -17,7 +17,7 @@ brew install wakemate
 ### Manual
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/wakemate.git
+git clone https://github.com/dgeske/wakemate.git
 cd wakemate
 chmod +x wakemate.sh
 ./wakemate.sh --init

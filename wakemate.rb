@@ -1,7 +1,7 @@
 class Wakemate < Formula
   desc "Automatic Wake-on-LAN for macOS - wake devices when your Mac wakes"
-  homepage "https://github.com/YOUR_GITHUB_USERNAME/wakemate"
-  url "https://github.com/YOUR_GITHUB_USERNAME/wakemate/archive/refs/tags/v1.0.0.tar.gz"
+  homepage "https://github.com/dgeske/wakemate"
+  url "https://github.com/dgeske/wakemate/archive/refs/tags/v1.0.0.tar.gz"
   sha256 "PLACEHOLDER_SHA256"
   license "Unlicense"
 
