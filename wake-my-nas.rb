@@ -1,5 +1,5 @@
 class WakeMyNas < Formula
-  desc "Automatic Wake-on-LAN for macOS - wake your NAS when your Mac wakes"
+  desc "Wake-on-LAN automation: wake your NAS/server when your Mac wakes"
   homepage "https://github.com/dgeske/wake-my-nas"
   url "https://github.com/dgeske/wake-my-nas/archive/refs/tags/v1.0.0.tar.gz"
   sha256 "be5e6ae9542b8dbbafd2a28e8d3b71aa04908dc050bfcdc1bbff39bca9867355"
@@ -19,7 +19,7 @@ class WakeMyNas < Formula
 
   def caveats
     <<~EOS
-      📡 wake-my-nas installed! Config created at ~/.config/wake-my-nas/config
+      wake-my-nas installed. Config created at ~/.config/wake-my-nas/config
 
       1. Find your device's MAC address:
          wake-my-nas --discover
@@ -30,7 +30,7 @@ class WakeMyNas < Formula
       3. Install the service:
          wake-my-nas-install-service
 
-      Done! Your device wakes when your Mac wakes.
+      Your device will wake automatically when your Mac wakes.
 
       View logs: tail -f /tmp/wake-my-nas.log
     EOS

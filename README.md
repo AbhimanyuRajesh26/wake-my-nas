@@ -1,25 +1,29 @@
-# 📡 wake-my-nas
+# wake-my-nas
 
 **Automatic Wake-on-LAN for macOS**
 
-Wake your NAS, server, or any device when you open your MacBook.
+Automatically wake your NAS, server, or any WoL-enabled device when your Mac wakes from sleep. No more waiting for your network storage to spin up—it's ready when you need it.
+
+## Why
+
+I got tired of opening my MacBook and waiting 30 seconds for my Synology NAS to wake up before I could access my files. This tool solves that by sending a Wake-on-LAN packet the moment macOS wakes, so your storage is ready by the time you need it. Simple automation that saves time every single day.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 brew install wake-my-nas
 wake-my-nas --discover                # Find your device's MAC address
 wake-my-nas --edit                    # Set MAC (IP optional)
-wake-my-nas-install-service           # Done!
+wake-my-nas-install-service           # Done
 ```
 
 Your device now wakes automatically when your Mac wakes.
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 **Find your device on the network:**
 ```bash
@@ -42,24 +46,25 @@ EXPECTED_SUBNET="192.168.1"       # Optional: Only run on this subnet
 
 ---
 
-## 📊 View Logs
+## View Logs
 
 ```bash
-tail -f $(brew --prefix)/var/log/wake-my-nas.log
+tail -f /tmp/wake-my-nas.log
 ```
 
 ---
 
-## 🗑️ Uninstall
+## Uninstall
 
 ```bash
-brew services stop wake-my-nas
+launchctl unload ~/Library/LaunchAgents/com.github.wake-my-nas.plist
+rm ~/Library/LaunchAgents/com.github.wake-my-nas.plist
 brew uninstall wake-my-nas
 ```
 
 ---
 
-## 💡 How It Works
+## How It Works
 
 1. Mac wakes (lid open, power button, etc.)
 2. Checks if you're on the right network
@@ -68,6 +73,12 @@ brew uninstall wake-my-nas
 
 ---
 
-## 📝 License
+## Keywords
+
+Wake-on-LAN, WoL, NAS automation, Synology wake, network storage, automatic wake, Mac sleep wake, LaunchAgent, magic packet, server wake, home server, network attached storage, macOS automation
+
+---
+
+## License
 
 Public domain. Do whatever you want.

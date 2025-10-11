@@ -49,7 +49,7 @@ notify() {
 
 validate_mac() {
     if [[ ! "$TARGET_MAC" =~ ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$ ]]; then
-        log "❌ Invalid MAC address format: $TARGET_MAC"
+        log "ERROR: Invalid MAC address format: $TARGET_MAC"
         notify "Invalid MAC address. Run: wake-my-nas --edit"
         exit 1
     fi
@@ -57,7 +57,7 @@ validate_mac() {
 
 validate_ip() {
     if [[ ! "$TARGET_IP" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-        log "❌ Invalid IP address format: $TARGET_IP"
+        log "ERROR: Invalid IP address format: $TARGET_IP"
         notify "Invalid IP address. Run: wake-my-nas --edit"
         exit 1
     fi
@@ -65,7 +65,7 @@ validate_ip() {
 
 check_wakeonlan() {
     if ! command -v wakeonlan &> /dev/null; then
-        log "⚠️  wakeonlan not found. Install with: brew install wakeonlan"
+        log "WARNING: wakeonlan not found. Install with: brew install wakeonlan"
         notify "wakeonlan not installed. Run: brew install wakeonlan"
         exit 1
     fi
@@ -73,7 +73,7 @@ check_wakeonlan() {
 
 check_config() {
     if [ "$TARGET_MAC" = "00:11:22:33:44:55" ]; then
-        log "⚠️  Default config detected. Please configure your device."
+        log "WARNING: Default config detected. Please configure your device."
         notify "Please configure your device: wake-my-nas --edit"
         exit 1
     fi
@@ -91,37 +91,37 @@ check_network() {
     if [ -n "$EXPECTED_SSID" ]; then
         CURRENT_SSID=$(get_current_ssid)
         if [ "$CURRENT_SSID" != "$EXPECTED_SSID" ]; then
-            log "❌ Not on expected network. Current: $CURRENT_SSID, Expected: $EXPECTED_SSID"
+            log "ERROR: Not on expected network. Current: $CURRENT_SSID, Expected: $EXPECTED_SSID"
             exit 0
         fi
-        log "✓ Connected to $CURRENT_SSID"
+        log "SUCCESS: Connected to $CURRENT_SSID"
     fi
 
     if [ -n "$EXPECTED_SUBNET" ]; then
         CURRENT_IP=$(ipconfig getifaddr en0 2>/dev/null || ipconfig getifaddr en1 2>/dev/null)
         if [[ ! "$CURRENT_IP" =~ ^$EXPECTED_SUBNET\. ]]; then
-            log "❌ Not on expected subnet. Current IP: $CURRENT_IP"
+            log "ERROR: Not on expected subnet. Current IP: $CURRENT_IP"
             exit 0
         fi
-        log "✓ On expected subnet: $CURRENT_IP"
+        log "SUCCESS: On expected subnet: $CURRENT_IP"
     fi
 }
 
 check_device_awake() {
     if [ -z "$TARGET_IP" ]; then
-        log "ℹ️  No IP configured, skipping ping check"
+        log "INFO: No IP configured, skipping ping check"
         return
     fi
     if ping -c 1 -W 2 "$TARGET_IP" &> /dev/null; then
-        log "✓ Device already awake at $TARGET_IP"
+        log "SUCCESS: Device already awake at $TARGET_IP"
         exit 0
     fi
 }
 
 send_wol() {
-    log "📡 Sending Wake-on-LAN packet to $TARGET_MAC..."
+    log "Sending Sending Wake-on-LAN packet to $TARGET_MAC..."
     wakeonlan "$TARGET_MAC" >> "$LOG_FILE" 2>&1
-    log "✓ Magic packet sent"
+    log "SUCCESS: Magic packet sent"
 }
 
 # -------------------- MAIN --------------------

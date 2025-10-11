@@ -13,5 +13,5 @@ cp "$PLIST_SRC" "$PLIST_DEST"
 sed -i '' "s|BREW_PREFIX|$(brew --prefix)|g" "$PLIST_DEST"
 launchctl load "$PLIST_DEST"
 
-echo "✅ Service installed and started!"
+echo "SUCCESS: Service installed and started!"
 echo "Your device will now wake automatically when your Mac wakes."
