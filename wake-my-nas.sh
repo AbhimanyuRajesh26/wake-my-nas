@@ -43,11 +43,42 @@ log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
 }
 
+notify() {
+    osascript -e "display notification \"$1\" with title \"wake-my-nas\"" 2>/dev/null || true
+}
+
+validate_mac() {
+    if [[ ! "$TARGET_MAC" =~ ^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$ ]]; then
+        log "❌ Invalid MAC address format: $TARGET_MAC"
+        notify "Invalid MAC address. Run: wake-my-nas --edit"
+        exit 1
+    fi
+}
+
+validate_ip() {
+    if [[ ! "$TARGET_IP" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+        log "❌ Invalid IP address format: $TARGET_IP"
+        notify "Invalid IP address. Run: wake-my-nas --edit"
+        exit 1
+    fi
+}
+
 check_wakeonlan() {
     if ! command -v wakeonlan &> /dev/null; then
         log "⚠️  wakeonlan not found. Install with: brew install wakeonlan"
+        notify "wakeonlan not installed. Run: brew install wakeonlan"
         exit 1
     fi
+}
+
+check_config() {
+    if [ "$TARGET_MAC" = "00:11:22:33:44:55" ] || [ "$TARGET_IP" = "192.168.1.100" ]; then
+        log "⚠️  Default config detected. Please configure your device."
+        notify "Please configure your device: wake-my-nas --edit"
+        exit 1
+    fi
+    validate_mac
+    validate_ip
 }
 
 get_current_ssid() {
@@ -114,11 +145,22 @@ case "${1:-}" in
         echo "Options:"
         echo "  --init          Create default config file"
         echo "  --edit, -e      Edit config file"
+        echo "  --discover      Scan network for devices (helps find MAC addresses)"
         echo "  --version, -v   Show version"
         echo "  --help, -h      Show this help"
         echo ""
         echo "Config: $CONFIG_FILE"
         echo "Logs:   $HOME/Library/Logs/wake-my-nas.log"
+        exit 0
+        ;;
+    --discover)
+        echo "Scanning local network for devices..."
+        echo "This may take a moment..."
+        echo ""
+        arp -a | grep -v "incomplete" | sort
+        echo ""
+        echo "Copy the MAC address (format: aa:bb:cc:dd:ee:ff) to your config:"
+        echo "  wake-my-nas --edit"
         exit 0
         ;;
 esac
@@ -127,8 +169,10 @@ load_config
 log "========== wake-my-nas v$VERSION started =========="
 
 check_wakeonlan
+check_config
 check_network
 check_device_awake
 send_wol
+notify "Device wake signal sent successfully"
 
 log "========== wake-my-nas complete =========="

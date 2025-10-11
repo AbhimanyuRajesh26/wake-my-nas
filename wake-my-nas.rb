@@ -21,10 +21,13 @@ class WakeMyNas < Formula
     <<~EOS
       📡 wake-my-nas installed! Config created at ~/.config/wake-my-nas/config
 
-      1. Set your device's MAC and IP:
+      1. Find your device's MAC address:
+         wake-my-nas --discover
+
+      2. Set your device's MAC and IP:
          wake-my-nas --edit
 
-      2. Install the service:
+      3. Install the service:
          wake-my-nas-install-service
 
       Done! Your device wakes when your Mac wakes.
