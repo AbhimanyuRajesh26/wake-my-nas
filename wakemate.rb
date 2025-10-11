@@ -9,7 +9,7 @@ class Wakemate < Formula
 
   def install
     bin.install "wakemate.sh" => "wakemate"
-    prefix.install "com.user.wakemate.plist"
+    prefix.install "com.github.wakemate.plist"
   end
 
   def caveats
@@ -21,9 +21,9 @@ class Wakemate < Formula
          wakemate --edit
 
       2. Install LaunchAgent (auto-wake on Mac wake):
-         cp #{prefix}/com.user.wakemate.plist ~/Library/LaunchAgents/
-         sed -i '' "s|INSTALL_PATH|#{bin}/wakemate|g" ~/Library/LaunchAgents/com.user.wakemate.plist
-         launchctl load ~/Library/LaunchAgents/com.user.wakemate.plist
+         cp #{prefix}/com.github.wakemate.plist ~/Library/LaunchAgents/
+         sed -i '' "s|INSTALL_PATH|#{bin}/wakemate|g" ~/Library/LaunchAgents/com.github.wakemate.plist
+         launchctl load ~/Library/LaunchAgents/com.github.wakemate.plist
 
       3. Test manually:
          wakemate
@@ -32,8 +32,8 @@ class Wakemate < Formula
          tail -f ~/Library/Logs/wakemate.log
 
       To uninstall LaunchAgent:
-         launchctl unload ~/Library/LaunchAgents/com.user.wakemate.plist
-         rm ~/Library/LaunchAgents/com.user.wakemate.plist
+         launchctl unload ~/Library/LaunchAgents/com.github.wakemate.plist
+         rm ~/Library/LaunchAgents/com.github.wakemate.plist
     EOS
   end
 

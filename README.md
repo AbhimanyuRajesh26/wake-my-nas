@@ -57,9 +57,9 @@ arp -a | grep YOUR_DEVICE_IP
 ### 3. Install LaunchAgent (auto-wake on Mac wake)
 
 ```bash
-cp $(brew --prefix)/opt/wakemate/com.user.wakemate.plist ~/Library/LaunchAgents/
-sed -i '' "s|INSTALL_PATH|$(which wakemate)|g" ~/Library/LaunchAgents/com.user.wakemate.plist
-launchctl load ~/Library/LaunchAgents/com.user.wakemate.plist
+cp $(brew --prefix)/opt/wakemate/com.github.wakemate.plist ~/Library/LaunchAgents/
+sed -i '' "s|INSTALL_PATH|$(which wakemate)|g" ~/Library/LaunchAgents/com.github.wakemate.plist
+launchctl load ~/Library/LaunchAgents/com.github.wakemate.plist
 ```
 
 ---
@@ -83,8 +83,8 @@ tail -f ~/Library/Logs/wakemate.log
 ## 🗑️ Uninstall
 
 ```bash
-launchctl unload ~/Library/LaunchAgents/com.user.wakemate.plist
-rm ~/Library/LaunchAgents/com.user.wakemate.plist
+launchctl unload ~/Library/LaunchAgents/com.github.wakemate.plist
+rm ~/Library/LaunchAgents/com.github.wakemate.plist
 brew uninstall wakemate
 ```
 

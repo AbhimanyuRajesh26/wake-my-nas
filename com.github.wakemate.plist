@@ -5,12 +5,9 @@
     <!-- ================================================================ -->
     <!-- wakemate LaunchAgent - Automatic Wake-on-LAN for macOS          -->
     <!-- ================================================================ -->
-    <!-- Installation: Copy to ~/Library/LaunchAgents/ and load with:     -->
-    <!-- launchctl load ~/Library/LaunchAgents/com.user.wakemate.plist    -->
-    <!-- ================================================================ -->
 
     <key>Label</key>
-    <string>com.user.wakemate</string>
+    <string>com.github.wakemate</string>
 
     <key>ProgramArguments</key>
     <array>
