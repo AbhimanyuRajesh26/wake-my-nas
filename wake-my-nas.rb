@@ -9,19 +9,42 @@ class WakeMyNas < Formula
 
   def install
     bin.install "wake-my-nas.sh" => "wake-my-nas"
+    (prefix/"homebrew.wake-my-nas.plist").write service_plist
   end
 
   def post_install
     system bin/"wake-my-nas", "--init"
   end
 
-  service do
-    run opt_bin/"wake-my-nas"
-    keep_alive false
-    process_type :background
-    watch_paths ["/private/var/run/systemkeychaincheck.done"]
-    log_path var/"log/wake-my-nas.log"
-    error_log_path var/"log/wake-my-nas-error.log"
+  def service_plist
+    <<~EOS
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+        <key>Label</key>
+        <string>#{plist_name}</string>
+        <key>ProgramArguments</key>
+        <array>
+          <string>#{opt_bin}/wake-my-nas</string>
+        </array>
+        <key>WatchPaths</key>
+        <array>
+          <string>/private/var/run/systemkeychaincheck.done</string>
+        </array>
+        <key>StandardOutPath</key>
+        <string>#{var}/log/wake-my-nas.log</string>
+        <key>StandardErrorPath</key>
+        <string>#{var}/log/wake-my-nas-error.log</string>
+        <key>KeepAlive</key>
+        <false/>
+        <key>ProcessType</key>
+        <string>Background</string>
+        <key>ThrottleInterval</key>
+        <integer>30</integer>
+      </dict>
+      </plist>
+    EOS
   end
 
   def caveats
