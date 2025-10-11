@@ -9,6 +9,9 @@ if [ -z "$WAKE_MY_NAS_BIN" ]; then
     exit 1
 fi
 
+# Unload if already loaded
+launchctl unload "$PLIST_DEST" 2>/dev/null || true
+
 # Create plist
 cat > "$PLIST_DEST" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -39,7 +42,14 @@ cat > "$PLIST_DEST" << EOF
 </plist>
 EOF
 
-launchctl load "$PLIST_DEST"
+# Load the agent
+if launchctl load "$PLIST_DEST" 2>/dev/null; then
+    echo "SUCCESS: Service installed and started!"
+else
+    echo "SUCCESS: Service updated and reloaded!"
+fi
 
-echo "SUCCESS: Service installed and started!"
 echo "Your device will now wake automatically when your Mac wakes."
+echo ""
+echo "Test it: Close your laptop, wait 5 seconds, open it, then check:"
+echo "  tail /tmp/wake-my-nas.log"
