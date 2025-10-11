@@ -29,9 +29,9 @@ create_default_config() {
     cat > "$CONFIG_FILE" << 'EOF'
 # wake-my-nas configuration
 TARGET_MAC="00:11:22:33:44:55"
-TARGET_IP="192.168.1.100"
-EXPECTED_SSID="YourHomeNetwork"
-EXPECTED_SUBNET="192.168.1"
+TARGET_IP=""  # Optional: set to skip redundant packets if device is already awake
+EXPECTED_SSID=""  # Optional: only run on this Wi-Fi network
+EXPECTED_SUBNET=""  # Optional: only run on this subnet
 EOF
     echo "Created config file: $CONFIG_FILE"
     echo "Edit it with your device settings."
@@ -72,13 +72,15 @@ check_wakeonlan() {
 }
 
 check_config() {
-    if [ "$TARGET_MAC" = "00:11:22:33:44:55" ] || [ "$TARGET_IP" = "192.168.1.100" ]; then
+    if [ "$TARGET_MAC" = "00:11:22:33:44:55" ]; then
         log "⚠️  Default config detected. Please configure your device."
         notify "Please configure your device: wake-my-nas --edit"
         exit 1
     fi
     validate_mac
-    validate_ip
+    if [ -n "$TARGET_IP" ]; then
+        validate_ip
+    fi
 }
 
 get_current_ssid() {
@@ -106,6 +108,10 @@ check_network() {
 }
 
 check_device_awake() {
+    if [ -z "$TARGET_IP" ]; then
+        log "ℹ️  No IP configured, skipping ping check"
+        return
+    fi
     if ping -c 1 -W 2 "$TARGET_IP" &> /dev/null; then
         log "✓ Device already awake at $TARGET_IP"
         exit 0

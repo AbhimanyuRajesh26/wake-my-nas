@@ -11,7 +11,7 @@ Wake your NAS, server, or any device when you open your MacBook.
 ```bash
 brew install wake-my-nas
 wake-my-nas --discover                # Find your device's MAC address
-wake-my-nas --edit                    # Set MAC and IP
+wake-my-nas --edit                    # Set MAC (IP optional)
 wake-my-nas-install-service           # Done!
 ```
 
@@ -29,10 +29,10 @@ wake-my-nas --discover
 When you run `wake-my-nas --edit`, set these values:
 
 ```bash
-TARGET_MAC="00:11:22:33:44:55"    # Your device's MAC address
-TARGET_IP="192.168.1.100"         # Your device's IP address
-EXPECTED_SSID="YourHomeNetwork"   # Your Wi-Fi name (optional)
-EXPECTED_SUBNET="192.168.1"       # Your network (optional)
+TARGET_MAC="00:11:22:33:44:55"    # Required: Your device's MAC address
+TARGET_IP="192.168.1.100"         # Optional: Skip if device already awake
+EXPECTED_SSID="YourHomeNetwork"   # Optional: Only run on this Wi-Fi
+EXPECTED_SUBNET="192.168.1"       # Optional: Only run on this subnet
 ```
 
 **Enable Wake-on-LAN on your device:**

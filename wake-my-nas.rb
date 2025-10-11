@@ -24,7 +24,7 @@ class WakeMyNas < Formula
       1. Find your device's MAC address:
          wake-my-nas --discover
 
-      2. Set your device's MAC and IP:
+      2. Set your device's MAC (IP optional):
          wake-my-nas --edit
 
       3. Install the service:
