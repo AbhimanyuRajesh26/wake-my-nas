@@ -6,6 +6,10 @@
 
 My Synology goes to sleep to save power, but I was tired of waiting for it to wake up every time I opened my MacBook. 
 
+**The problem:**
+I want my NAS to sleep (saves power, quieter, extends drive life), but I don't want to wait 30 seconds every time I need to access my files. Manual WoL apps require me to remember to wake it. I wanted it automatic.
+
+**The solution:**
 Built a simple macOS tool that sends a WoL packet automatically when your Mac wakes, so your NAS is ready by the time you need it.
 
 **Setup:**
@@ -24,10 +28,15 @@ Done. Your Synology wakes automatically now.
 - Checks if NAS is already awake (avoids redundant packets)
 - Built-in device discovery
 - Works with any Synology model that supports WoL
+- macOS notifications if something goes wrong
 
 **GitHub:** https://github.com/dgeske/wake-my-nas
 
 Free and open source. Saves me 30 seconds every single time I open my laptop.
+
+**If you find this useful, a GitHub star would help!** Trying to get it into Homebrew Core so it's easier for others to discover. Need to show enough people find it valuable.
+
+Happy to answer questions or help with setup!
 
 ---
 
