@@ -13,6 +13,7 @@ I got tired of opening my MacBook and waiting 30 seconds for my Synology NAS to 
 ## Quick Start
 
 ```bash
+brew tap dgeske/tap
 brew install wake-my-nas
 wake-my-nas --discover                # Find your device's MAC address
 wake-my-nas --edit                    # Set MAC (IP optional)
