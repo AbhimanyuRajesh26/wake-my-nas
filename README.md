@@ -2,11 +2,31 @@
 
 **Automatic Wake-on-LAN for macOS**
 
-Automatically wake your NAS, server, or any WoL-enabled device when your Mac wakes from sleep. No more waiting for your network storage to spin up—it's ready when you need it.
+Automatically wake your server, desktop, or any WoL-enabled device when your Mac wakes from sleep.
 
-## Why
+## ⚠️ Important Note About NAS Usage
 
-I got tired of opening my MacBook and waiting 30 seconds for my Synology NAS to wake up before I could access my files. This tool solves that by sending a Wake-on-LAN packet the moment macOS wakes, so your storage is ready by the time you need it. Simple automation that saves time every single day.
+**Thanks to feedback from the community:** Using WoL with a NAS that stores critical data may not be ideal. Here's why:
+
+- **Availability**: If you need remote access, a sleeping NAS won't be reachable
+- **Drive health**: Frequent spin-up/down cycles can reduce drive lifespan
+- **Reliability**: WoL can fail due to network issues or power settings
+- **Backups**: Scheduled backup jobs may fail if NAS is asleep
+- **RAID**: Array maintenance and rebuilds need consistent uptime
+
+**Better use cases for this tool:**
+- Home servers (media, development, testing)
+- Desktop computers you want to wake remotely
+- Lab/test machines that don't store critical data
+- Any device where convenience > 24/7 availability
+
+**For NAS with important data:** Consider keeping it awake 24/7. The power cost is worth the reliability.
+
+---
+
+## Why This Exists
+
+I built this to automatically wake devices when opening my MacBook, eliminating the manual step of using WoL apps. While I originally designed it for my NAS, community feedback helped me realize it's better suited for non-critical devices where convenience matters more than constant availability.
 
 ---
 
@@ -78,7 +98,13 @@ brew uninstall wake-my-nas
 
 ## Keywords
 
-Wake-on-LAN, WoL, NAS automation, Synology wake, network storage, automatic wake, Mac sleep wake, LaunchAgent, magic packet, server wake, home server, network attached storage, macOS automation
+Wake-on-LAN, WoL, server automation, automatic wake, Mac sleep wake, LaunchAgent, magic packet, home server, macOS automation, desktop wake, remote wake
+
+---
+
+## Acknowledgments
+
+Thanks to the r/synology community for valuable feedback about NAS reliability and helping refine the use cases for this tool.
 
 ---
 
