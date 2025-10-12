@@ -48,12 +48,26 @@ wake-my-nas --edit              # Set MAC (IP optional)
 wake-my-nas-install-service     # Done
 ```
 
-### Next Steps
-1. **Post to r/homelab** (today/Sunday) - home server focus
-2. **Post to Hacker News** (Monday 8-10am EST) - with pivot context
-3. **Post to r/macOS** (Monday afternoon) - generic device wake
-4. **Track stars/usage** - Need ~75+ stars for Homebrew Core
-5. **Resubmit to Homebrew Core** once notable
+### Next Steps - MONDAY 2025-10-13
+
+**Morning (8-10am EST = 2-4pm CET):**
+1. Post to Hacker News:
+   - Go to: https://news.ycombinator.com/submit
+   - Title: `Wake-my-nas: Auto-wake your home server when your Mac wakes`
+   - URL: `https://github.com/dgeske/wake-my-nas`
+   - Immediately post first comment from `marketing/hackernews.md`
+   - Monitor for first hour, respond to questions
+
+**Afternoon (your evening):**
+2. Post to r/macOS:
+   - Go to: https://reddit.com/r/macOS/submit
+   - Copy from `marketing/reddit-macos.md`
+   - Flair: App/Tool
+
+**Ongoing:**
+3. Track stars/usage - Need ~75+ stars for Homebrew Core
+4. Respond to comments on all posts
+5. Resubmit to Homebrew Core once notable
 
 ### Marketing Status
 - ✅ Twitter/X posted
