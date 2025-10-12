@@ -1,8 +1,8 @@
 # wake-my-nas - Project Status
 
-**Last Updated:** 2025-10-11
+**Last Updated:** 2025-10-12
 
-## Current State: ✅ LIVE - Available via Personal Tap
+## Current State: ✅ LIVE - Pivoted to Home Server Use Cases
 
 ### What's Done
 - [x] Built wake-my-nas tool (automatic Wake-on-LAN for macOS)
@@ -11,17 +11,27 @@
 - [x] ~~PR submitted to Homebrew Core~~ Rejected (not notable enough yet)
 - [x] Personal Homebrew tap created
 - [x] Tool available for installation
+- [x] Posted to r/synology - got valuable feedback
+- [x] **PIVOT:** Updated to focus on home servers, not NAS with critical data
+
+### Community Feedback (r/synology)
+- Drive wear from spin-up/down cycles reduces lifespan
+- WoL unreliable for critical data access
+- Power savings not worth reliability tradeoffs for NAS
+- **Result:** Pivoted to home servers, desktops, lab machines
+
+### Better Use Cases
+- Home servers (media, development, testing)
+- Desktop computers for remote wake
+- Lab/test machines
+- Any device where convenience > 24/7 availability
 
 ### Links
 - **GitHub Repo:** https://github.com/dgeske/wake-my-nas
 - **Homebrew Tap:** https://github.com/dgeske/homebrew-tap
 - **Installation:** `brew tap dgeske/tap && brew install wake-my-nas`
 - **Local Dev:** ~/dev/wake-my-nas/
-
-### Homebrew Core Feedback
-- Rejected for "notability" - need more users first
-- Tool is fine, just not popular enough yet
-- Can resubmit once it gains traction
+- **r/synology post:** https://www.reddit.com/r/synology/comments/1o3vcxh/
 
 ### Key Files
 - `wake-my-nas.sh` - Main script (134 lines)
@@ -39,13 +49,18 @@ wake-my-nas-install-service     # Done
 ```
 
 ### Next Steps
-1. **Share the tool** - Get users to build notability
-   - Reddit: r/homelab, r/synology, r/macOS
-   - Hacker News
-   - Twitter/X
-   - Blog post
-2. **Track stars/usage** - Need ~75+ stars for Homebrew Core
-3. **Resubmit to Homebrew Core** once notable
+1. **Post to r/homelab** (today/Sunday) - home server focus
+2. **Post to Hacker News** (Monday 8-10am EST) - with pivot context
+3. **Post to r/macOS** (Monday afternoon) - generic device wake
+4. **Track stars/usage** - Need ~75+ stars for Homebrew Core
+5. **Resubmit to Homebrew Core** once notable
+
+### Marketing Status
+- ✅ Twitter/X posted
+- ✅ r/synology posted (got feedback, pivoted)
+- ⏳ r/homelab (ready to post - updated)
+- ⏳ Hacker News (Monday morning - updated)
+- ⏳ r/macOS (Monday afternoon - updated)
 
 ### How Users Install Now
 ```bash
