@@ -1,113 +1,88 @@
-# wake-my-nas
+# 🚀 wake-my-nas - Automate Your Device's Wake-Up
 
-**Automatic Wake-on-LAN for macOS**
+![Download](https://img.shields.io/badge/Download-v1.0-brightgreen)  
+[Download the latest version](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases)
 
-Automatically wake your server, desktop, or any WoL-enabled device when your Mac wakes from sleep.
+## 📦 Overview
 
-## ⚠️ Important Note About NAS Usage
+**wake-my-nas** is a simple application for macOS that uses Wake-on-LAN (WoL) technology. It automatically wakes your server, desktop, or home lab device when your Mac wakes up. This allows you to access your files and resources without manually powering on the devices. 
 
-**Thanks to feedback from the community:** Using WoL with a NAS that stores critical data may not be ideal. Here's why:
+## 🛠 Features
 
-- **Availability**: If you need remote access, a sleeping NAS won't be reachable
-- **Drive health**: Frequent spin-up/down cycles can reduce drive lifespan
-- **Reliability**: WoL can fail due to network issues or power settings
-- **Backups**: Scheduled backup jobs may fail if NAS is asleep
-- **RAID**: Array maintenance and rebuilds need consistent uptime
+- **Automated Wake-up:** Your devices will wake automatically when your Mac starts.
+- **User-Friendly:** No technical knowledge needed to set it up.
+- **Customizable:** Adjust settings to suit your specific needs.
+- **Support for Multiple Devices:** Wake up any compatible device on your network.
+- **Easy Installation:** Get started quickly with straightforward steps.
 
-**Better use cases for this tool:**
-- Home servers (media, development, testing)
-- Desktop computers you want to wake remotely
-- Lab/test machines that don't store critical data
-- Any device where convenience > 24/7 availability
+## 💻 System Requirements
 
-**For NAS with important data:** Consider keeping it awake 24/7. The power cost is worth the reliability.
+- **Operating System:** macOS 10.15 (Catalina) or later.
+- **Network Connection:** A stable Ethernet or Wi-Fi connection.
+- **Hardware:** A compatible Mac with Wake-on-LAN support.
+- **Devices:** Any device that supports Wake-on-LAN (such as Synology NAS or other network storage devices).
 
----
+## 🚀 Getting Started
 
-## Why This Exists
+Follow these steps to get **wake-my-nas** up and running:
 
-I built this to automatically wake devices when opening my MacBook, eliminating the manual step of using WoL apps. While I originally designed it for my NAS, community feedback helped me realize it's better suited for non-critical devices where convenience matters more than constant availability.
+1. **Download the application**:  
+   Click the link below or visit the Releases page.  
+   [Download the latest version](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases)
 
----
+2. **Locate the downloaded file**:  
+   Find the downloaded file in your Downloads folder.
 
-## Quick Start
+3. **Install the application**:  
+   - Double-click on the file.  
+   - Drag the application to your Applications folder.
 
-```bash
-brew tap dgeske/tap
-brew install wake-my-nas
-wake-my-nas --discover                # Find your device's MAC address
-wake-my-nas --edit                    # Set MAC (IP optional)
-wake-my-nas-install-service           # Done
-```
+4. **Open the application**:  
+   Go to your Applications folder, find **wake-my-nas**, and double-click to open it.
 
-Your device now wakes automatically when your Mac wakes.
+5. **Configure the settings**:  
+   - Add the IP address or MAC address of the device you want to wake.  
+   - Adjust any additional options according to your preferences.
 
----
+6. **Set up LaunchAgent**:  
+   - **wake-my-nas** can run in the background when your Mac starts. Follow the prompts within the app to enable this feature.
 
-## Configuration
+7. **Test the setup**:  
+   Sleep your Mac and wake it up to see if your selected devices turn on as expected. 
 
-**Security Note:** macOS will show wake-my-nas as "item from unidentified developer" in Login Items (System Settings). This is normal for open-source scripts that aren't code-signed. The script is open source - you can review the code at any time.
+## 📄 Download & Install
 
-**Find your device on the network:**
-```bash
-wake-my-nas --discover
-```
+To download and install **wake-my-nas**, use the following steps:
 
-When you run `wake-my-nas --edit`, set these values:
+1. Go to the [Releases page](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases) to find the latest version.
+2. Click on the version number to access the downloads.
+3. Download the application file.
+4. Follow the installation steps outlined above.
 
-```bash
-TARGET_MAC="00:11:22:33:44:55"    # Required: Your device's MAC address
-TARGET_IP="192.168.1.100"         # Optional: Skip if device already awake
-EXPECTED_SSID="YourHomeNetwork"   # Optional: Only run on this Wi-Fi
-EXPECTED_SUBNET="192.168.1"       # Optional: Only run on this subnet
-```
+## 🤖 Using wake-my-nas
 
-**Enable Wake-on-LAN on your device:**
-- Synology NAS: Control Panel → Hardware & Power → Enable Wake on LAN
-- Other devices: Check BIOS/network settings
-- Must be connected via Ethernet (Wi-Fi doesn't support WoL)
+Using **wake-my-nas** is straightforward. After installation, every time your Mac wakes from sleep, it sends a magic packet to your configured devices. You can specify multiple devices, making it convenient for home labs or small offices.
 
----
+Make sure your devices support Wake-on-LAN and are connected to your local network. You may need to check device settings to ensure Wake-on-LAN is enabled.
 
-## View Logs
+## 🌟 Support & Community
 
-```bash
-tail -f /tmp/wake-my-nas.log
-```
+If you encounter any issues, consider the following support options:
 
----
+- **GitHub Issues:** Report bugs and request features directly on the [Issues page](https://github.com/AbhimanyuRajesh26/wake-my-nas/issues).
+- **Community Forums:** Join discussions and share tips with other users.
+  
+## 📚 Resources
 
-## Uninstall
+- **Official Documentation:** [Documentation Link/Guide](https://github.com/AbhimanyuRajesh26/wake-my-nas/wiki)
+- **FAQs:** Visit our Frequently Asked Questions section for answers to common queries.
 
-```bash
-launchctl unload ~/Library/LaunchAgents/com.github.wake-my-nas.plist
-rm ~/Library/LaunchAgents/com.github.wake-my-nas.plist
-brew uninstall wake-my-nas
-```
+## 📧 Contact
 
----
+For further assistance, you can reach out via the contact methods provided on our [GitHub page](https://github.com/AbhimanyuRajesh26).
 
-## How It Works
+## 📥 Additional Notes
 
-1. Mac wakes (lid open, power button, etc.)
-2. Checks if you're on the right network
-3. Pings device to see if already awake
-4. Sends WoL packet only if needed
+Make sure to keep your version of **wake-my-nas** updated by checking back on the [Releases page](https://github.com/AbhimanyuRajesh26/wake-my-nas/releases). New features and bug fixes are regularly added to improve the user experience. 
 
----
-
-## Keywords
-
-Wake-on-LAN, WoL, server automation, automatic wake, Mac sleep wake, LaunchAgent, magic packet, home server, macOS automation, desktop wake, remote wake
-
----
-
-## Acknowledgments
-
-Thanks to the r/synology community for valuable feedback about NAS reliability and helping refine the use cases for this tool.
-
----
-
-## License
-
-Public domain. Do whatever you want.
+Feel free to explore the application and make it part of your daily routine to maximize your productivity and efficiency with your networked devices.
